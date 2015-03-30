@@ -1,0 +1,62 @@
+<xml>
+  <block type="component_event" id="1" x="68" y="-458">
+    <mutation component_type="Form" instance_name="Result" event_name="BackPressed"></mutation>
+    <field name="COMPONENT_SELECTOR">Result</field>
+    <statement name="DO">
+      <block type="controls_openAnotherScreen" id="2" inline="false">
+        <value name="SCREEN">
+          <block type="text" id="3">
+            <field name="TEXT">Screen1</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="4" x="72" y="-326">
+    <mutation component_type="Form" instance_name="Result" event_name="Initialize"></mutation>
+    <field name="COMPONENT_SELECTOR">Result</field>
+    <statement name="DO">
+      <block type="component_method" id="5" inline="false">
+        <mutation component_type="Canvas" method_name="DrawText" is_generic="false" instance_name="Canvas1"></mutation>
+        <field name="COMPONENT_SELECTOR">Canvas1</field>
+        <value name="ARG0">
+          <block type="text" id="6">
+            <field name="TEXT">Awesome, You won!</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="math_number" id="7">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+        <value name="ARG2">
+          <block type="math_number" id="8">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+        <next>
+          <block type="component_method" id="9" inline="false">
+            <mutation component_type="Canvas" method_name="DrawText" is_generic="false" instance_name="Canvas1"></mutation>
+            <field name="COMPONENT_SELECTOR">Canvas1</field>
+            <value name="ARG0">
+              <block type="text" id="10">
+                <field name="TEXT">Go play one more time.</field>
+              </block>
+            </value>
+            <value name="ARG1">
+              <block type="math_number" id="11">
+                <field name="NUM">200</field>
+              </block>
+            </value>
+            <value name="ARG2">
+              <block type="math_number" id="12">
+                <field name="NUM">200</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <yacodeblocks ya-version="123" language-version="18"></yacodeblocks>
+</xml>

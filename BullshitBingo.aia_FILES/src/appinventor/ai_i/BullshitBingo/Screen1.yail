@@ -1,0 +1,332 @@
+#|
+$Source $Yail
+|#
+
+(define-form appinventor.ai_i.BullshitBingo.Screen1 Screen1)
+(require <com.google.youngandroid.runtime>)
+
+(def g$master_bs_db_key "master_bs")
+(def g$master_list_url "https://raw.githubusercontent.com/thejeshgn/bullshit-bingo/master/master.csv")
+(def g$master_list (call-yail-primitive make-yail-list (*list-for-runtime* ) '() "make a list"))
+(def g$random_list (call-yail-primitive make-yail-list (*list-for-runtime* ) '() "make a list"))
+(def g$bullshit_list (call-yail-primitive make-yail-list (*list-for-runtime* ) '() "make a list"))
+(def g$master_list_length 0)
+(def g$random_list_length 0)
+(def g$total_bullshit_items_display 9)
+(def (p$proc_restart_game )  (set-var! g$master_list (call-yail-primitive yail-list-from-csv-row (*list-for-runtime* (call-component-method 'BSTinyDB 'GetValue (*list-for-runtime* (get-var g$master_bs_db_key)  "Hockey Stick Growth,Viral Effect,Social Media,Crowd funding,Crowd source,Collaboration,Revolution,Real Time,Birds Eye View,30000 Ft View, Conceptual, Trend, Framework,\u0009Out of the box, Refactor, Enterprise, Loosely Coupled, Bottleneck,Scrum,Tailwind,Multitask,Turnkey,Demographic,Heads up,Proactive, Functionality, Touch Base, Low Hanging Fruit,Target Audience, Scale, Metrics") '(text any)) ) '(text) "list from csv row"))((get-var p$create_random_list) )((get-var p$prepare_bullshit_tiles) ))
+(def (p$create_random_list )  (set-var! g$random_list (call-yail-primitive make-yail-list (*list-for-runtime* ) '() "make a list"))(while (call-yail-primitive yail-not-equal? (*list-for-runtime* (call-yail-primitive yail-list-length (*list-for-runtime* (get-var g$random_list) ) '(list) "length of list") (get-var g$total_bullshit_items_display)) '(any any) "=") (begin   (let ( ($bullshit (call-yail-primitive yail-list-pick-random (*list-for-runtime* (get-var g$master_list) ) '(list) "pick random item"))  )   (if (call-yail-primitive yail-not (*list-for-runtime* (call-yail-primitive yail-list-member? (*list-for-runtime* (lexical-value $bullshit) (get-var g$random_list)) '(any list) "is in list?")) '(boolean) "not") (begin   (call-yail-primitive yail-list-add-to-list! (*list-for-runtime* (get-var g$random_list) (lexical-value $bullshit) ) '(list any ) "add items to list"))) ))))
+(def (p$long_click_to_unselect $button)  (if (call-yail-primitive yail-equal? (*list-for-runtime* (get-property-and-check  (lexical-value $button) 'Button 'BackgroundColor) -65536) '(any any) "=") (begin   (set-and-coerce-property-and-check! (lexical-value $button) 'Button 'BackgroundColor -256 'number)(call-yail-primitive yail-list-remove-item! (*list-for-runtime* (get-var g$bullshit_list) (call-yail-primitive yail-list-index (*list-for-runtime* (get-property-and-check  (lexical-value $button) 'Button 'Text) (get-var g$bullshit_list)) '(any list) "position in list")) '(list number) "remove list item"))))
+(def (p$set_tiles_with_random_bullshit $button $button_text_id)  (set-and-coerce-property-and-check! (lexical-value $button) 'Button 'Text (call-yail-primitive yail-list-get-item (*list-for-runtime* (get-var g$random_list) (lexical-value $button_text_id)) '(list number) "select list item") 'text)(set-and-coerce-property-and-check! (lexical-value $button) 'Button 'BackgroundColor -256 'number))
+(def (p$when_button_clicked $button)  (if (call-yail-primitive yail-equal? (*list-for-runtime* (get-property-and-check  (lexical-value $button) 'Button 'BackgroundColor) -256) '(any any) "=") (begin   (set-and-coerce-property-and-check! (lexical-value $button) 'Button 'BackgroundColor -65536 'number)(call-yail-primitive yail-list-add-to-list! (*list-for-runtime* (get-var g$bullshit_list) (get-property-and-check  (lexical-value $button) 'Button 'Text) ) '(list any ) "add items to list")(if (call-yail-primitive yail-equal? (*list-for-runtime* (call-yail-primitive yail-list-length (*list-for-runtime* (get-var g$bullshit_list) ) '(list) "length of list") 9) '(any any) "=") (begin   (call-yail-primitive open-another-screen (*list-for-runtime* "Result") '(text) "open another screen"))))))
+(def (p$prepare_bullshit_tiles )  ((get-var p$set_tiles_with_random_bullshit) (get-component button_1) 1)((get-var p$set_tiles_with_random_bullshit) (get-component button_2) 2)((get-var p$set_tiles_with_random_bullshit) (get-component button_3) 3)((get-var p$set_tiles_with_random_bullshit) (get-component button_4) 4)((get-var p$set_tiles_with_random_bullshit) (get-component button_5) 5)((get-var p$set_tiles_with_random_bullshit) (get-component button_6) 6)((get-var p$set_tiles_with_random_bullshit) (get-component button_7) 7)((get-var p$set_tiles_with_random_bullshit) (get-component button_8) 8)((get-var p$set_tiles_with_random_bullshit) (get-component button_9) 9))
+;;; Screen1
+
+(do-after-form-creation (set-and-coerce-property! 'Screen1 'AboutScreen "Bullshit Bingo - A Game to play during meetings. By Thejesh GN <i@thejeshgn.com> " 'text)
+ (set-and-coerce-property! 'Screen1 'AppName "BullshitBingo" 'text)
+ (set-and-coerce-property! 'Screen1 'CloseScreenAnimation "slidehorizontal" 'text)
+ (set-and-coerce-property! 'Screen1 'Icon "Screenshot_2015-03-27-19-11-28.png" 'text)
+ (set-and-coerce-property! 'Screen1 'ScreenOrientation "portrait" 'text)
+ (set-and-coerce-property! 'Screen1 'Title "Bullshit Bingo" 'text)
+ (set-and-coerce-property! 'Screen1 'VersionCode 4 'number)
+ (set-and-coerce-property! 'Screen1 'VersionName "2.0" 'text)
+)
+
+(define-event Screen1 Initialize()(set-this-form)
+    (set-var! g$master_list (call-yail-primitive yail-list-from-csv-row (*list-for-runtime* (call-component-method 'BSTinyDB 'GetValue (*list-for-runtime* (get-var g$master_bs_db_key)  "Hockey Stick Growth,Viral Effect,Social Media,Crowd funding,Crowd source,Collaboration,Revolution,Real Time,Birds Eye View,30000 Ft View, Conceptual, Trend, Framework,\u0009Out of the box, Refactor, Enterprise, Loosely Coupled, Bottleneck,Scrum,Tailwind,Multitask,Turnkey,Demographic,Heads up,Proactive, Functionality, Touch Base, Low Hanging Fruit,Target Audience, Scale, Metrics") '(text any)) ) '(text) "list from csv row"))(set-var! g$master_list_length (call-yail-primitive yail-list-length (*list-for-runtime* (get-var g$master_list) ) '(list) "length of list"))((get-var p$proc_restart_game) ))
+(define-event Screen1 BackPressed()(set-this-form)
+    (call-yail-primitive close-application (*list-for-runtime* ) '() "close application"))
+;;; bingo_horizontal_div_1
+
+(add-component Screen1 HorizontalArrangement bingo_horizontal_div_1 
+(set-and-coerce-property! 'bingo_horizontal_div_1 'AlignVertical 2 'number)
+
+(set-and-coerce-property! 'bingo_horizontal_div_1 'Width -2 'number)
+
+(set-and-coerce-property! 'bingo_horizontal_div_1 'Height 110 'number)
+
+)
+
+;;; button_1
+
+(add-component bingo_horizontal_div_1 Button button_1 
+(set-and-coerce-property! 'button_1 'BackgroundColor #xFFFFFF00 'number)
+
+(set-and-coerce-property! 'button_1 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'button_1 'Shape 1 'number)
+
+(set-and-coerce-property! 'button_1 'Text "Text for Button4" 'text)
+
+(set-and-coerce-property! 'button_1 'Width -2 'number)
+
+(set-and-coerce-property! 'button_1 'Height -2 'number)
+
+)
+
+(define-event button_1 Click()(set-this-form)
+    ((get-var p$when_button_clicked) (get-component button_1)))
+(define-event button_1 LongClick()(set-this-form)
+    ((get-var p$long_click_to_unselect) (get-component button_1)))
+;;; button_2
+
+(add-component bingo_horizontal_div_1 Button button_2 
+(set-and-coerce-property! 'button_2 'BackgroundColor #xFFFFFF00 'number)
+
+(set-and-coerce-property! 'button_2 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'button_2 'Shape 1 'number)
+
+(set-and-coerce-property! 'button_2 'Text "Text for Button5" 'text)
+
+(set-and-coerce-property! 'button_2 'Width -2 'number)
+
+(set-and-coerce-property! 'button_2 'Height -2 'number)
+
+)
+
+(define-event button_2 Click()(set-this-form)
+    ((get-var p$when_button_clicked) (get-component button_2)))
+(define-event button_2 LongClick()(set-this-form)
+    ((get-var p$long_click_to_unselect) (get-component button_2)))
+;;; button_3
+
+(add-component bingo_horizontal_div_1 Button button_3 
+(set-and-coerce-property! 'button_3 'BackgroundColor #xFFFFFF00 'number)
+
+(set-and-coerce-property! 'button_3 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'button_3 'Shape 1 'number)
+
+(set-and-coerce-property! 'button_3 'Text "Text for Button6" 'text)
+
+(set-and-coerce-property! 'button_3 'Width -2 'number)
+
+(set-and-coerce-property! 'button_3 'Height -2 'number)
+
+)
+
+(define-event button_3 Click()(set-this-form)
+    ((get-var p$when_button_clicked) (get-component button_3)))
+(define-event button_3 LongClick()(set-this-form)
+    ((get-var p$long_click_to_unselect) (get-component button_3)))
+;;; bingo_horizontal_div_2
+
+(add-component Screen1 HorizontalArrangement bingo_horizontal_div_2 
+(set-and-coerce-property! 'bingo_horizontal_div_2 'AlignVertical 2 'number)
+
+(set-and-coerce-property! 'bingo_horizontal_div_2 'Width -2 'number)
+
+(set-and-coerce-property! 'bingo_horizontal_div_2 'Height 110 'number)
+
+)
+
+;;; button_4
+
+(add-component bingo_horizontal_div_2 Button button_4 
+(set-and-coerce-property! 'button_4 'BackgroundColor #xFFFFFF00 'number)
+
+(set-and-coerce-property! 'button_4 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'button_4 'Shape 1 'number)
+
+(set-and-coerce-property! 'button_4 'Text "Text for Button1" 'text)
+
+(set-and-coerce-property! 'button_4 'Width -2 'number)
+
+(set-and-coerce-property! 'button_4 'Height 110 'number)
+
+)
+
+(define-event button_4 Click()(set-this-form)
+    ((get-var p$when_button_clicked) (get-component button_4)))
+(define-event button_4 LongClick()(set-this-form)
+    ((get-var p$long_click_to_unselect) (get-component button_4)))
+;;; button_5
+
+(add-component bingo_horizontal_div_2 Button button_5 
+(set-and-coerce-property! 'button_5 'BackgroundColor #xFFFFFF00 'number)
+
+(set-and-coerce-property! 'button_5 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'button_5 'Shape 1 'number)
+
+(set-and-coerce-property! 'button_5 'Text "Text for Button2" 'text)
+
+(set-and-coerce-property! 'button_5 'Width -2 'number)
+
+(set-and-coerce-property! 'button_5 'Height 110 'number)
+
+)
+
+(define-event button_5 Click()(set-this-form)
+    ((get-var p$when_button_clicked) (get-component button_5)))
+(define-event button_5 LongClick()(set-this-form)
+    ((get-var p$long_click_to_unselect) (get-component button_5)))
+;;; button_6
+
+(add-component bingo_horizontal_div_2 Button button_6 
+(set-and-coerce-property! 'button_6 'BackgroundColor #xFFFFFF00 'number)
+
+(set-and-coerce-property! 'button_6 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'button_6 'Shape 1 'number)
+
+(set-and-coerce-property! 'button_6 'Text "Text for Button3" 'text)
+
+(set-and-coerce-property! 'button_6 'Width -2 'number)
+
+(set-and-coerce-property! 'button_6 'Height 110 'number)
+
+)
+
+(define-event button_6 Click()(set-this-form)
+    ((get-var p$when_button_clicked) (get-component button_6)))
+(define-event button_6 LongClick()(set-this-form)
+    ((get-var p$long_click_to_unselect) (get-component button_6)))
+;;; HorizontalArrangement1
+
+(add-component Screen1 HorizontalArrangement HorizontalArrangement1 
+(set-and-coerce-property! 'HorizontalArrangement1 'AlignVertical 2 'number)
+
+(set-and-coerce-property! 'HorizontalArrangement1 'Width -2 'number)
+
+(set-and-coerce-property! 'HorizontalArrangement1 'Height 110 'number)
+
+)
+
+;;; button_7
+
+(add-component HorizontalArrangement1 Button button_7 
+(set-and-coerce-property! 'button_7 'BackgroundColor #xFFFFFF00 'number)
+
+(set-and-coerce-property! 'button_7 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'button_7 'Shape 1 'number)
+
+(set-and-coerce-property! 'button_7 'Text "Text for Button1" 'text)
+
+(set-and-coerce-property! 'button_7 'Width -2 'number)
+
+(set-and-coerce-property! 'button_7 'Height 110 'number)
+
+)
+
+(define-event button_7 Click()(set-this-form)
+    ((get-var p$when_button_clicked) (get-component button_7)))
+(define-event button_7 LongClick()(set-this-form)
+    ((get-var p$long_click_to_unselect) (get-component button_7)))
+;;; button_8
+
+(add-component HorizontalArrangement1 Button button_8 
+(set-and-coerce-property! 'button_8 'BackgroundColor #xFFFFFF00 'number)
+
+(set-and-coerce-property! 'button_8 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'button_8 'Shape 1 'number)
+
+(set-and-coerce-property! 'button_8 'Text "Text for Button2" 'text)
+
+(set-and-coerce-property! 'button_8 'Width -2 'number)
+
+(set-and-coerce-property! 'button_8 'Height 110 'number)
+
+)
+
+(define-event button_8 Click()(set-this-form)
+    ((get-var p$when_button_clicked) (get-component button_8)))
+(define-event button_8 LongClick()(set-this-form)
+    ((get-var p$long_click_to_unselect) (get-component button_8)))
+;;; button_9
+
+(add-component HorizontalArrangement1 Button button_9 
+(set-and-coerce-property! 'button_9 'BackgroundColor #xFFFFFF00 'number)
+
+(set-and-coerce-property! 'button_9 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'button_9 'Shape 1 'number)
+
+(set-and-coerce-property! 'button_9 'Text "Text for Button3" 'text)
+
+(set-and-coerce-property! 'button_9 'Width -2 'number)
+
+(set-and-coerce-property! 'button_9 'Height 110 'number)
+
+)
+
+(define-event button_9 Click()(set-this-form)
+    ((get-var p$when_button_clicked) (get-component button_9)))
+(define-event button_9 LongClick()(set-this-form)
+    ((get-var p$long_click_to_unselect) (get-component button_9)))
+;;; HorizontalArrangement2
+
+(add-component Screen1 HorizontalArrangement HorizontalArrangement2 
+(set-and-coerce-property! 'HorizontalArrangement2 'Width -2 'number)
+
+(set-and-coerce-property! 'HorizontalArrangement2 'Height 10 'number)
+
+)
+
+;;; footer_horizontal_div
+
+(add-component Screen1 HorizontalArrangement footer_horizontal_div 
+(set-and-coerce-property! 'footer_horizontal_div 'AlignHorizontal 3 'number)
+
+(set-and-coerce-property! 'footer_horizontal_div 'AlignVertical 3 'number)
+
+(set-and-coerce-property! 'footer_horizontal_div 'Width -2 'number)
+
+(set-and-coerce-property! 'footer_horizontal_div 'Height 50 'number)
+
+)
+
+;;; get_latest_bs
+
+(add-component footer_horizontal_div Button get_latest_bs 
+(set-and-coerce-property! 'get_latest_bs 'BackgroundColor #xFFFFC800 'number)
+
+(set-and-coerce-property! 'get_latest_bs 'Shape 1 'number)
+
+(set-and-coerce-property! 'get_latest_bs 'Text "Get Latest BS " 'text)
+
+)
+
+(define-event get_latest_bs Click()(set-this-form)
+    (call-component-method 'web_service_response 'ShowProgressDialog (*list-for-runtime* "Downloding BS from Internet. Please wait."  "Downloading....") '(text text))(set-and-coerce-property! 'get_bs_web_call 'Url (get-var g$master_list_url) 'text)(call-component-method 'get_bs_web_call 'Get (*list-for-runtime*) '()))
+;;; VerticalArrangement1
+
+(add-component footer_horizontal_div VerticalArrangement VerticalArrangement1 
+(set-and-coerce-property! 'VerticalArrangement1 'Width 10 'number)
+
+)
+
+;;; new_game
+
+(add-component footer_horizontal_div Button new_game 
+(set-and-coerce-property! 'new_game 'BackgroundColor #xFFFFC800 'number)
+
+(set-and-coerce-property! 'new_game 'Shape 1 'number)
+
+(set-and-coerce-property! 'new_game 'Text "Restart Game " 'text)
+
+)
+
+(define-event new_game Click()(set-this-form)
+    ((get-var p$proc_restart_game) ))
+;;; BSTinyDB
+
+(add-component Screen1 TinyDB BSTinyDB 
+)
+
+;;; get_bs_web_call
+
+(add-component Screen1 Web get_bs_web_call 
+)
+
+(define-event get_bs_web_call GotText($url $responseCode $responseType $responseContent)(set-this-form)
+    (if (call-yail-primitive yail-equal? (*list-for-runtime* (lexical-value $responseCode) 200) '(any any) "=") (begin   (call-component-method 'BSTinyDB 'StoreValue (*list-for-runtime* (get-var g$master_bs_db_key)  (lexical-value $responseContent)) '(text any))(call-component-method 'web_service_response 'DismissProgressDialog (*list-for-runtime*) '())((get-var p$proc_restart_game) ))))
+;;; web_service_response
+
+(add-component Screen1 Notifier web_service_response 
+)
+
+(init-runtime)

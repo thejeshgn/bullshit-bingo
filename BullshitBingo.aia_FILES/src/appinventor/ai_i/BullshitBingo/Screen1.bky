@@ -1,0 +1,1096 @@
+<xml>
+  <block type="global_declaration" id="1" inline="false" x="-211" y="-617">
+    <field name="NAME">master_bs_db_key</field>
+    <value name="VALUE">
+      <block type="text" id="2">
+        <field name="TEXT">master_bs</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="3" inline="false" x="-215" y="-586">
+    <field name="NAME">master_list_url</field>
+    <value name="VALUE">
+      <block type="text" id="4">
+        <field name="TEXT">https://raw.githubusercontent.com/thejeshgn/bullshit-bingo/master/master.csv</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="5" inline="false" x="-215" y="-542">
+    <field name="NAME">master_list</field>
+    <value name="VALUE">
+      <block type="lists_create_with" id="6">
+        <mutation items="0"></mutation>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="7" inline="false" x="-212" y="-498">
+    <field name="NAME">random_list</field>
+    <value name="VALUE">
+      <block type="lists_create_with" id="8">
+        <mutation items="0"></mutation>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="9" inline="false" x="-209" y="-444">
+    <field name="NAME">bullshit_list</field>
+    <value name="VALUE">
+      <block type="lists_create_with" id="10">
+        <mutation items="0"></mutation>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="11" inline="false" x="-207" y="-402">
+    <field name="NAME">master_list_length</field>
+    <value name="VALUE">
+      <block type="math_number" id="12">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="13" inline="false" x="-206" y="-358">
+    <field name="NAME">random_list_length</field>
+    <value name="VALUE">
+      <block type="math_number" id="14">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="15" inline="false" x="-211" y="-323">
+    <field name="NAME">total_bullshit_items_display</field>
+    <value name="VALUE">
+      <block type="math_number" id="16">
+        <field name="NUM">9</field>
+      </block>
+    </value>
+  </block>
+  <block type="component_event" id="17" x="-200" y="-275">
+    <mutation component_type="Form" instance_name="Screen1" event_name="Initialize"></mutation>
+    <field name="COMPONENT_SELECTOR">Screen1</field>
+    <statement name="DO">
+      <block type="lexical_variable_set" id="18" inline="false">
+        <field name="VAR">global master_list</field>
+        <value name="VALUE">
+          <block type="lists_from_csv_row" id="19" inline="false">
+            <value name="TEXT">
+              <block type="component_method" id="20" inline="false">
+                <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="BSTinyDB"></mutation>
+                <field name="COMPONENT_SELECTOR">BSTinyDB</field>
+                <value name="ARG0">
+                  <block type="lexical_variable_get" id="21">
+                    <field name="VAR">global master_bs_db_key</field>
+                  </block>
+                </value>
+                <value name="ARG1">
+                  <block type="text" id="22">
+                    <field name="TEXT">Hockey Stick Growth,Viral Effect,Social Media,Crowd funding,Crowd source,Collaboration,Revolution,Real Time,Birds Eye View,30000 Ft View, Conceptual, Trend, Framework,	Out of the box, Refactor, Enterprise, Loosely Coupled, Bottleneck,Scrum,Tailwind,Multitask,Turnkey,Demographic,Heads up,Proactive, Functionality, Touch Base, Low Hanging Fruit,Target Audience, Scale, Metrics</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="lexical_variable_set" id="23" inline="false">
+            <field name="VAR">global master_list_length</field>
+            <value name="VALUE">
+              <block type="lists_length" id="24" inline="false">
+                <value name="LIST">
+                  <block type="lexical_variable_get" id="25">
+                    <field name="VAR">global master_list</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="procedures_callnoreturn" id="26">
+                <mutation name="proc_restart_game"></mutation>
+                <field name="PROCNAME">proc_restart_game</field>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="27" x="-204" y="-169">
+    <mutation component_type="Button" instance_name="new_game" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">new_game</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="28">
+        <mutation name="proc_restart_game"></mutation>
+        <field name="PROCNAME">proc_restart_game</field>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="29" x="-202" y="-80">
+    <mutation></mutation>
+    <field name="NAME">proc_restart_game</field>
+    <statement name="STACK">
+      <block type="lexical_variable_set" id="30" inline="false">
+        <field name="VAR">global master_list</field>
+        <value name="VALUE">
+          <block type="lists_from_csv_row" id="31" inline="false">
+            <value name="TEXT">
+              <block type="component_method" id="32" inline="false">
+                <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="BSTinyDB"></mutation>
+                <field name="COMPONENT_SELECTOR">BSTinyDB</field>
+                <value name="ARG0">
+                  <block type="lexical_variable_get" id="33">
+                    <field name="VAR">global master_bs_db_key</field>
+                  </block>
+                </value>
+                <value name="ARG1">
+                  <block type="text" id="34">
+                    <field name="TEXT">Hockey Stick Growth,Viral Effect,Social Media,Crowd funding,Crowd source,Collaboration,Revolution,Real Time,Birds Eye View,30000 Ft View, Conceptual, Trend, Framework,	Out of the box, Refactor, Enterprise, Loosely Coupled, Bottleneck,Scrum,Tailwind,Multitask,Turnkey,Demographic,Heads up,Proactive, Functionality, Touch Base, Low Hanging Fruit,Target Audience, Scale, Metrics</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="procedures_callnoreturn" id="35">
+            <mutation name="create_random_list"></mutation>
+            <field name="PROCNAME">create_random_list</field>
+            <next>
+              <block type="procedures_callnoreturn" id="36">
+                <mutation name="prepare_bullshit_tiles"></mutation>
+                <field name="PROCNAME">prepare_bullshit_tiles</field>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="37" x="-233" y="70">
+    <mutation></mutation>
+    <field name="NAME">create_random_list</field>
+    <statement name="STACK">
+      <block type="lexical_variable_set" id="38" inline="false">
+        <field name="VAR">global random_list</field>
+        <value name="VALUE">
+          <block type="lists_create_with" id="39">
+            <mutation items="0"></mutation>
+          </block>
+        </value>
+        <next>
+          <block type="controls_while" id="40" inline="false">
+            <value name="TEST">
+              <block type="logic_compare" id="41" inline="true">
+                <field name="OP">NEQ</field>
+                <value name="A">
+                  <block type="lists_length" id="42" inline="false">
+                    <value name="LIST">
+                      <block type="lexical_variable_get" id="43">
+                        <field name="VAR">global random_list</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="lexical_variable_get" id="44">
+                    <field name="VAR">global total_bullshit_items_display</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="local_declaration_statement" id="45" inline="false">
+                <mutation>
+                  <localname name="bullshit"></localname>
+                </mutation>
+                <field name="VAR0">bullshit</field>
+                <value name="DECL0">
+                  <block type="lists_pick_random_item" id="46" inline="false">
+                    <value name="LIST">
+                      <block type="lexical_variable_get" id="47">
+                        <field name="VAR">global master_list</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="STACK">
+                  <block type="controls_if" id="48" inline="false">
+                    <value name="IF0">
+                      <block type="logic_negate" id="49" inline="false">
+                        <value name="BOOL">
+                          <block type="lists_is_in" id="50" inline="false">
+                            <value name="ITEM">
+                              <block type="lexical_variable_get" id="51">
+                                <field name="VAR">bullshit</field>
+                              </block>
+                            </value>
+                            <value name="LIST">
+                              <block type="lexical_variable_get" id="52">
+                                <field name="VAR">global random_list</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="lists_add_items" id="53" inline="false">
+                        <mutation items="1"></mutation>
+                        <value name="LIST">
+                          <block type="lexical_variable_get" id="54">
+                            <field name="VAR">global random_list</field>
+                          </block>
+                        </value>
+                        <value name="ITEM0">
+                          <block type="lexical_variable_get" id="55">
+                            <field name="VAR">bullshit</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                  </block>
+                </statement>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="56" x="862" y="41">
+    <mutation>
+      <arg name="button"></arg>
+    </mutation>
+    <field name="NAME">long_click_to_unselect</field>
+    <field name="VAR0">button</field>
+    <statement name="STACK">
+      <block type="controls_if" id="57" inline="false">
+        <value name="IF0">
+          <block type="logic_compare" id="58" inline="true">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="component_set_get" id="59" inline="false">
+                <mutation component_type="Button" set_or_get="get" property_name="BackgroundColor" is_generic="true"></mutation>
+                <field name="PROP">BackgroundColor</field>
+                <value name="COMPONENT">
+                  <block type="lexical_variable_get" id="60">
+                    <field name="VAR">button</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="B">
+              <block type="color_red" id="61">
+                <field name="COLOR">#ff0000</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="component_set_get" id="62" inline="false">
+            <mutation component_type="Button" set_or_get="set" property_name="BackgroundColor" is_generic="true"></mutation>
+            <field name="PROP">BackgroundColor</field>
+            <value name="COMPONENT">
+              <block type="lexical_variable_get" id="63">
+                <field name="VAR">button</field>
+              </block>
+            </value>
+            <value name="VALUE">
+              <block type="color_yellow" id="64">
+                <field name="COLOR">#ffff00</field>
+              </block>
+            </value>
+            <next>
+              <block type="lists_remove_item" id="65" inline="false">
+                <value name="LIST">
+                  <block type="lexical_variable_get" id="66">
+                    <field name="VAR">global bullshit_list</field>
+                  </block>
+                </value>
+                <value name="INDEX">
+                  <block type="lists_position_in" id="67" inline="false">
+                    <value name="ITEM">
+                      <block type="component_set_get" id="68" inline="false">
+                        <mutation component_type="Button" set_or_get="get" property_name="Text" is_generic="true"></mutation>
+                        <field name="PROP">Text</field>
+                        <value name="COMPONENT">
+                          <block type="lexical_variable_get" id="69">
+                            <field name="VAR">button</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="LIST">
+                      <block type="lexical_variable_get" id="70">
+                        <field name="VAR">global bullshit_list</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="71" x="-234" y="413">
+    <mutation>
+      <arg name="button"></arg>
+      <arg name="button_text_id"></arg>
+    </mutation>
+    <field name="NAME">set_tiles_with_random_bullshit</field>
+    <field name="VAR0">button</field>
+    <field name="VAR1">button_text_id</field>
+    <statement name="STACK">
+      <block type="component_set_get" id="72" inline="false">
+        <mutation component_type="Button" set_or_get="set" property_name="Text" is_generic="true"></mutation>
+        <field name="PROP">Text</field>
+        <value name="COMPONENT">
+          <block type="lexical_variable_get" id="73">
+            <field name="VAR">button</field>
+          </block>
+        </value>
+        <value name="VALUE">
+          <block type="lists_select_item" id="74" inline="false">
+            <value name="LIST">
+              <block type="lexical_variable_get" id="75">
+                <field name="VAR">global random_list</field>
+              </block>
+            </value>
+            <value name="NUM">
+              <block type="lexical_variable_get" id="76">
+                <field name="VAR">button_text_id</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="component_set_get" id="77" inline="false">
+            <mutation component_type="Button" set_or_get="set" property_name="BackgroundColor" is_generic="true"></mutation>
+            <field name="PROP">BackgroundColor</field>
+            <value name="COMPONENT">
+              <block type="lexical_variable_get" id="78">
+                <field name="VAR">button</field>
+              </block>
+            </value>
+            <value name="VALUE">
+              <block type="color_yellow" id="79">
+                <field name="COLOR">#ffff00</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="80" x="603" y="566">
+    <mutation>
+      <arg name="button"></arg>
+    </mutation>
+    <field name="NAME">when_button_clicked</field>
+    <field name="VAR0">button</field>
+    <statement name="STACK">
+      <block type="controls_if" id="81" inline="false">
+        <value name="IF0">
+          <block type="logic_compare" id="82" inline="true">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="component_set_get" id="83" inline="false">
+                <mutation component_type="Button" set_or_get="get" property_name="BackgroundColor" is_generic="true"></mutation>
+                <field name="PROP">BackgroundColor</field>
+                <value name="COMPONENT">
+                  <block type="lexical_variable_get" id="84">
+                    <field name="VAR">button</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="B">
+              <block type="color_red" id="85">
+                <field name="COLOR">#ffff00</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="component_set_get" id="86" inline="false">
+            <mutation component_type="Button" set_or_get="set" property_name="BackgroundColor" is_generic="true"></mutation>
+            <field name="PROP">BackgroundColor</field>
+            <value name="COMPONENT">
+              <block type="lexical_variable_get" id="87">
+                <field name="VAR">button</field>
+              </block>
+            </value>
+            <value name="VALUE">
+              <block type="color_yellow" id="88">
+                <field name="COLOR">#ff0000</field>
+              </block>
+            </value>
+            <next>
+              <block type="lists_add_items" id="89" inline="false">
+                <mutation items="1"></mutation>
+                <value name="LIST">
+                  <block type="lexical_variable_get" id="90">
+                    <field name="VAR">global bullshit_list</field>
+                  </block>
+                </value>
+                <value name="ITEM0">
+                  <block type="component_set_get" id="91" inline="false">
+                    <mutation component_type="Button" set_or_get="get" property_name="Text" is_generic="true"></mutation>
+                    <field name="PROP">Text</field>
+                    <value name="COMPONENT">
+                      <block type="lexical_variable_get" id="92">
+                        <field name="VAR">button</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_if" id="93" inline="false">
+                    <value name="IF0">
+                      <block type="logic_compare" id="94" inline="true">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="lists_length" id="95" inline="false">
+                            <value name="LIST">
+                              <block type="lexical_variable_get" id="96">
+                                <field name="VAR">global bullshit_list</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="97">
+                            <field name="NUM">9</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="controls_openAnotherScreen" id="98" inline="false">
+                        <value name="SCREEN">
+                          <block type="text" id="99">
+                            <field name="TEXT">Result</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="100" x="-254" y="628">
+    <mutation></mutation>
+    <field name="NAME">prepare_bullshit_tiles</field>
+    <statement name="STACK">
+      <block type="procedures_callnoreturn" id="101" inline="false">
+        <mutation name="set_tiles_with_random_bullshit">
+          <arg name="button"></arg>
+          <arg name="button_text_id"></arg>
+        </mutation>
+        <field name="PROCNAME">set_tiles_with_random_bullshit</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="102">
+            <mutation component_type="Button" instance_name="button_1"></mutation>
+            <field name="COMPONENT_SELECTOR">button_1</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="math_number" id="103">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <next>
+          <block type="procedures_callnoreturn" id="104" inline="false">
+            <mutation name="set_tiles_with_random_bullshit">
+              <arg name="button"></arg>
+              <arg name="button_text_id"></arg>
+            </mutation>
+            <field name="PROCNAME">set_tiles_with_random_bullshit</field>
+            <value name="ARG0">
+              <block type="component_component_block" id="105">
+                <mutation component_type="Button" instance_name="button_2"></mutation>
+                <field name="COMPONENT_SELECTOR">button_2</field>
+              </block>
+            </value>
+            <value name="ARG1">
+              <block type="math_number" id="106">
+                <field name="NUM">2</field>
+              </block>
+            </value>
+            <next>
+              <block type="procedures_callnoreturn" id="107" inline="false">
+                <mutation name="set_tiles_with_random_bullshit">
+                  <arg name="button"></arg>
+                  <arg name="button_text_id"></arg>
+                </mutation>
+                <field name="PROCNAME">set_tiles_with_random_bullshit</field>
+                <value name="ARG0">
+                  <block type="component_component_block" id="108">
+                    <mutation component_type="Button" instance_name="button_3"></mutation>
+                    <field name="COMPONENT_SELECTOR">button_3</field>
+                  </block>
+                </value>
+                <value name="ARG1">
+                  <block type="math_number" id="109">
+                    <field name="NUM">3</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="procedures_callnoreturn" id="110" inline="false">
+                    <mutation name="set_tiles_with_random_bullshit">
+                      <arg name="button"></arg>
+                      <arg name="button_text_id"></arg>
+                    </mutation>
+                    <field name="PROCNAME">set_tiles_with_random_bullshit</field>
+                    <value name="ARG0">
+                      <block type="component_component_block" id="111">
+                        <mutation component_type="Button" instance_name="button_4"></mutation>
+                        <field name="COMPONENT_SELECTOR">button_4</field>
+                      </block>
+                    </value>
+                    <value name="ARG1">
+                      <block type="math_number" id="112">
+                        <field name="NUM">4</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="procedures_callnoreturn" id="113" inline="false">
+                        <mutation name="set_tiles_with_random_bullshit">
+                          <arg name="button"></arg>
+                          <arg name="button_text_id"></arg>
+                        </mutation>
+                        <field name="PROCNAME">set_tiles_with_random_bullshit</field>
+                        <value name="ARG0">
+                          <block type="component_component_block" id="114">
+                            <mutation component_type="Button" instance_name="button_5"></mutation>
+                            <field name="COMPONENT_SELECTOR">button_5</field>
+                          </block>
+                        </value>
+                        <value name="ARG1">
+                          <block type="math_number" id="115">
+                            <field name="NUM">5</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="procedures_callnoreturn" id="116" inline="false">
+                            <mutation name="set_tiles_with_random_bullshit">
+                              <arg name="button"></arg>
+                              <arg name="button_text_id"></arg>
+                            </mutation>
+                            <field name="PROCNAME">set_tiles_with_random_bullshit</field>
+                            <value name="ARG0">
+                              <block type="component_component_block" id="117">
+                                <mutation component_type="Button" instance_name="button_6"></mutation>
+                                <field name="COMPONENT_SELECTOR">button_6</field>
+                              </block>
+                            </value>
+                            <value name="ARG1">
+                              <block type="math_number" id="118">
+                                <field name="NUM">6</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="procedures_callnoreturn" id="119" inline="false">
+                                <mutation name="set_tiles_with_random_bullshit">
+                                  <arg name="button"></arg>
+                                  <arg name="button_text_id"></arg>
+                                </mutation>
+                                <field name="PROCNAME">set_tiles_with_random_bullshit</field>
+                                <value name="ARG0">
+                                  <block type="component_component_block" id="120">
+                                    <mutation component_type="Button" instance_name="button_7"></mutation>
+                                    <field name="COMPONENT_SELECTOR">button_7</field>
+                                  </block>
+                                </value>
+                                <value name="ARG1">
+                                  <block type="math_number" id="121">
+                                    <field name="NUM">7</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="procedures_callnoreturn" id="122" inline="false">
+                                    <mutation name="set_tiles_with_random_bullshit">
+                                      <arg name="button"></arg>
+                                      <arg name="button_text_id"></arg>
+                                    </mutation>
+                                    <field name="PROCNAME">set_tiles_with_random_bullshit</field>
+                                    <value name="ARG0">
+                                      <block type="component_component_block" id="123">
+                                        <mutation component_type="Button" instance_name="button_8"></mutation>
+                                        <field name="COMPONENT_SELECTOR">button_8</field>
+                                      </block>
+                                    </value>
+                                    <value name="ARG1">
+                                      <block type="math_number" id="124">
+                                        <field name="NUM">8</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="procedures_callnoreturn" id="125" inline="false">
+                                        <mutation name="set_tiles_with_random_bullshit">
+                                          <arg name="button"></arg>
+                                          <arg name="button_text_id"></arg>
+                                        </mutation>
+                                        <field name="PROCNAME">set_tiles_with_random_bullshit</field>
+                                        <value name="ARG0">
+                                          <block type="component_component_block" id="126">
+                                            <mutation component_type="Button" instance_name="button_9"></mutation>
+                                            <field name="COMPONENT_SELECTOR">button_9</field>
+                                          </block>
+                                        </value>
+                                        <value name="ARG1">
+                                          <block type="math_number" id="127">
+                                            <field name="NUM">9</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="128" x="606" y="964">
+    <mutation component_type="Button" instance_name="button_1" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">button_1</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="129" inline="false">
+        <mutation name="when_button_clicked">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">when_button_clicked</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="130">
+            <mutation component_type="Button" instance_name="button_1"></mutation>
+            <field name="COMPONENT_SELECTOR">button_1</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="131" x="1000" y="958">
+    <mutation component_type="Button" instance_name="button_4" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">button_4</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="132" inline="false">
+        <mutation name="when_button_clicked">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">when_button_clicked</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="133">
+            <mutation component_type="Button" instance_name="button_4"></mutation>
+            <field name="COMPONENT_SELECTOR">button_4</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="134" x="1389" y="945">
+    <mutation component_type="Button" instance_name="button_7" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">button_7</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="135" inline="false">
+        <mutation name="when_button_clicked">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">when_button_clicked</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="136">
+            <mutation component_type="Button" instance_name="button_7"></mutation>
+            <field name="COMPONENT_SELECTOR">button_7</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="137" x="613" y="1078">
+    <mutation component_type="Button" instance_name="button_1" event_name="LongClick"></mutation>
+    <field name="COMPONENT_SELECTOR">button_1</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="138" inline="false">
+        <mutation name="long_click_to_unselect">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">long_click_to_unselect</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="139">
+            <mutation component_type="Button" instance_name="button_1"></mutation>
+            <field name="COMPONENT_SELECTOR">button_1</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="140" x="1000" y="1081">
+    <mutation component_type="Button" instance_name="button_4" event_name="LongClick"></mutation>
+    <field name="COMPONENT_SELECTOR">button_4</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="141" inline="false">
+        <mutation name="long_click_to_unselect">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">long_click_to_unselect</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="142">
+            <mutation component_type="Button" instance_name="button_4"></mutation>
+            <field name="COMPONENT_SELECTOR">button_4</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="143" x="1432" y="1070">
+    <mutation component_type="Button" instance_name="button_7" event_name="LongClick"></mutation>
+    <field name="COMPONENT_SELECTOR">button_7</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="144" inline="false">
+        <mutation name="long_click_to_unselect">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">long_click_to_unselect</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="145">
+            <mutation component_type="Button" instance_name="button_7"></mutation>
+            <field name="COMPONENT_SELECTOR">button_7</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="146" x="610" y="1203">
+    <mutation component_type="Button" instance_name="button_2" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">button_2</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="147" inline="false">
+        <mutation name="when_button_clicked">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">when_button_clicked</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="148">
+            <mutation component_type="Button" instance_name="button_2"></mutation>
+            <field name="COMPONENT_SELECTOR">button_2</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="149" x="1028" y="1207">
+    <mutation component_type="Button" instance_name="button_5" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">button_5</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="150" inline="false">
+        <mutation name="when_button_clicked">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">when_button_clicked</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="151">
+            <mutation component_type="Button" instance_name="button_5"></mutation>
+            <field name="COMPONENT_SELECTOR">button_5</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="152" x="1442" y="1236">
+    <mutation component_type="Button" instance_name="button_8" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">button_8</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="153" inline="false">
+        <mutation name="when_button_clicked">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">when_button_clicked</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="154">
+            <mutation component_type="Button" instance_name="button_8"></mutation>
+            <field name="COMPONENT_SELECTOR">button_8</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="155" x="619" y="1311">
+    <mutation component_type="Button" instance_name="button_2" event_name="LongClick"></mutation>
+    <field name="COMPONENT_SELECTOR">button_2</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="156" inline="false">
+        <mutation name="long_click_to_unselect">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">long_click_to_unselect</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="157">
+            <mutation component_type="Button" instance_name="button_2"></mutation>
+            <field name="COMPONENT_SELECTOR">button_2</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="158" x="1007" y="1317">
+    <mutation component_type="Button" instance_name="button_5" event_name="LongClick"></mutation>
+    <field name="COMPONENT_SELECTOR">button_5</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="159" inline="false">
+        <mutation name="long_click_to_unselect">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">long_click_to_unselect</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="160">
+            <mutation component_type="Button" instance_name="button_5"></mutation>
+            <field name="COMPONENT_SELECTOR">button_5</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="161" x="1439" y="1342">
+    <mutation component_type="Button" instance_name="button_8" event_name="LongClick"></mutation>
+    <field name="COMPONENT_SELECTOR">button_8</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="162" inline="false">
+        <mutation name="long_click_to_unselect">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">long_click_to_unselect</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="163">
+            <mutation component_type="Button" instance_name="button_8"></mutation>
+            <field name="COMPONENT_SELECTOR">button_8</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="164" x="620" y="1436">
+    <mutation component_type="Button" instance_name="button_3" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">button_3</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="165" inline="false">
+        <mutation name="when_button_clicked">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">when_button_clicked</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="166">
+            <mutation component_type="Button" instance_name="button_3"></mutation>
+            <field name="COMPONENT_SELECTOR">button_3</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="167" x="-241" y="1485">
+    <mutation component_type="Button" instance_name="get_latest_bs" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">get_latest_bs</field>
+    <statement name="DO">
+      <block type="component_method" id="168" inline="false">
+        <mutation component_type="Notifier" method_name="ShowProgressDialog" is_generic="false" instance_name="web_service_response"></mutation>
+        <field name="COMPONENT_SELECTOR">web_service_response</field>
+        <value name="ARG0">
+          <block type="text" id="169">
+            <field name="TEXT">Downloding BS from Internet. Please wait.</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="text" id="170">
+            <field name="TEXT">Downloading....</field>
+          </block>
+        </value>
+        <next>
+          <block type="component_set_get" id="171" inline="false">
+            <mutation component_type="Web" set_or_get="set" property_name="Url" is_generic="false" instance_name="get_bs_web_call"></mutation>
+            <field name="COMPONENT_SELECTOR">get_bs_web_call</field>
+            <field name="PROP">Url</field>
+            <value name="VALUE">
+              <block type="lexical_variable_get" id="172">
+                <field name="VAR">global master_list_url</field>
+              </block>
+            </value>
+            <next>
+              <block type="component_method" id="173">
+                <mutation component_type="Web" method_name="Get" is_generic="false" instance_name="get_bs_web_call"></mutation>
+                <field name="COMPONENT_SELECTOR">get_bs_web_call</field>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="174" x="1017" y="1437">
+    <mutation component_type="Button" instance_name="button_6" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">button_6</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="175" inline="false">
+        <mutation name="when_button_clicked">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">when_button_clicked</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="176">
+            <mutation component_type="Button" instance_name="button_6"></mutation>
+            <field name="COMPONENT_SELECTOR">button_6</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="177" x="1443" y="1470">
+    <mutation component_type="Button" instance_name="button_9" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">button_9</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="178" inline="false">
+        <mutation name="when_button_clicked">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">when_button_clicked</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="179">
+            <mutation component_type="Button" instance_name="button_9"></mutation>
+            <field name="COMPONENT_SELECTOR">button_9</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="180" x="623" y="1539">
+    <mutation component_type="Button" instance_name="button_3" event_name="LongClick"></mutation>
+    <field name="COMPONENT_SELECTOR">button_3</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="181" inline="false">
+        <mutation name="long_click_to_unselect">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">long_click_to_unselect</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="182">
+            <mutation component_type="Button" instance_name="button_3"></mutation>
+            <field name="COMPONENT_SELECTOR">button_3</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="183" x="-236" y="1616">
+    <mutation component_type="Web" instance_name="get_bs_web_call" event_name="GotText"></mutation>
+    <field name="COMPONENT_SELECTOR">get_bs_web_call</field>
+    <statement name="DO">
+      <block type="controls_if" id="184" inline="false">
+        <value name="IF0">
+          <block type="logic_compare" id="185" inline="true">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="lexical_variable_get" id="186">
+                <mutation>
+                  <eventparam name="responseCode"></eventparam>
+                </mutation>
+                <field name="VAR">responseCode</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="math_number" id="187">
+                <field name="NUM">200</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="component_method" id="188" inline="false">
+            <mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="BSTinyDB"></mutation>
+            <field name="COMPONENT_SELECTOR">BSTinyDB</field>
+            <value name="ARG0">
+              <block type="lexical_variable_get" id="189">
+                <field name="VAR">global master_bs_db_key</field>
+              </block>
+            </value>
+            <value name="ARG1">
+              <block type="lexical_variable_get" id="190">
+                <mutation>
+                  <eventparam name="responseContent"></eventparam>
+                </mutation>
+                <field name="VAR">responseContent</field>
+              </block>
+            </value>
+            <next>
+              <block type="component_method" id="191">
+                <mutation component_type="Notifier" method_name="DismissProgressDialog" is_generic="false" instance_name="web_service_response"></mutation>
+                <field name="COMPONENT_SELECTOR">web_service_response</field>
+                <next>
+                  <block type="procedures_callnoreturn" id="192">
+                    <mutation name="proc_restart_game"></mutation>
+                    <field name="PROCNAME">proc_restart_game</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="193" x="1015" y="1552">
+    <mutation component_type="Button" instance_name="button_6" event_name="LongClick"></mutation>
+    <field name="COMPONENT_SELECTOR">button_6</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="194" inline="false">
+        <mutation name="long_click_to_unselect">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">long_click_to_unselect</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="195">
+            <mutation component_type="Button" instance_name="button_6"></mutation>
+            <field name="COMPONENT_SELECTOR">button_6</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="196" x="1436" y="1577">
+    <mutation component_type="Button" instance_name="button_9" event_name="LongClick"></mutation>
+    <field name="COMPONENT_SELECTOR">button_9</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="197" inline="false">
+        <mutation name="long_click_to_unselect">
+          <arg name="button"></arg>
+        </mutation>
+        <field name="PROCNAME">long_click_to_unselect</field>
+        <value name="ARG0">
+          <block type="component_component_block" id="198">
+            <mutation component_type="Button" instance_name="button_9"></mutation>
+            <field name="COMPONENT_SELECTOR">button_9</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="199" x="-58" y="2007">
+    <mutation component_type="Form" instance_name="Screen1" event_name="BackPressed"></mutation>
+    <field name="COMPONENT_SELECTOR">Screen1</field>
+    <statement name="DO">
+      <block type="controls_closeApplication" id="200"></block>
+    </statement>
+  </block>
+  <yacodeblocks ya-version="123" language-version="18"></yacodeblocks>
+</xml>

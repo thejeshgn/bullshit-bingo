@@ -1,0 +1,81 @@
+#|
+$Source $Yail
+|#
+
+(define-form appinventor.ai_i.BullshitBingo.Result Result)
+(require <com.google.youngandroid.runtime>)
+
+;;; Result
+
+(do-after-form-creation (set-and-coerce-property! 'Result 'AppName "BullshitBingo" 'text)
+ (set-and-coerce-property! 'Result 'ScreenOrientation "portrait" 'text)
+ (set-and-coerce-property! 'Result 'Title "Awesome" 'text)
+)
+
+(define-event Result BackPressed()(set-this-form)
+    (call-yail-primitive open-another-screen (*list-for-runtime* "Screen1") '(text) "open another screen"))
+(define-event Result Initialize()(set-this-form)
+    (call-component-method 'Canvas1 'DrawText (*list-for-runtime* "Awesome, You won!"  100  100) '(text number number))(call-component-method 'Canvas1 'DrawText (*list-for-runtime* "Go play one more time."  200  200) '(text number number)))
+;;; HorizontalArrangement1
+
+(add-component Result HorizontalArrangement HorizontalArrangement1 
+(set-and-coerce-property! 'HorizontalArrangement1 'Width -2 'number)
+
+(set-and-coerce-property! 'HorizontalArrangement1 'Height 50 'number)
+
+)
+
+;;; Label1
+
+(add-component HorizontalArrangement1 Label Label1 
+(set-and-coerce-property! 'Label1 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'Label1 'FontSize 34 'number)
+
+(set-and-coerce-property! 'Label1 'FontTypeface 3 'number)
+
+(set-and-coerce-property! 'Label1 'HasMargins #f 'boolean)
+
+(set-and-coerce-property! 'Label1 'Text "Bullshit" 'text)
+
+(set-and-coerce-property! 'Label1 'TextAlignment 1 'number)
+
+(set-and-coerce-property! 'Label1 'Width -2 'number)
+
+)
+
+;;; HorizontalArrangement3
+
+(add-component Result HorizontalArrangement HorizontalArrangement3 
+(set-and-coerce-property! 'HorizontalArrangement3 'Width -2 'number)
+
+(set-and-coerce-property! 'HorizontalArrangement3 'Height -2 'number)
+
+)
+
+;;; Canvas1
+
+(add-component HorizontalArrangement3 Canvas Canvas1 
+(set-and-coerce-property! 'Canvas1 'BackgroundColor #xFFFF0000 'number)
+
+(set-and-coerce-property! 'Canvas1 'Width -2 'number)
+
+(set-and-coerce-property! 'Canvas1 'Height -2 'number)
+
+)
+
+;;; HorizontalArrangement2
+
+(add-component Result HorizontalArrangement HorizontalArrangement2 
+(set-and-coerce-property! 'HorizontalArrangement2 'Width -2 'number)
+
+(set-and-coerce-property! 'HorizontalArrangement2 'Height 50 'number)
+
+)
+
+;;; Sharing1
+
+(add-component Result Sharing Sharing1 
+)
+
+(init-runtime)
